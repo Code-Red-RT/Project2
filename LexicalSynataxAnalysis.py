@@ -38,13 +38,18 @@ with open(input_file) as file:
         if tabCheck == 1: # to check if indentation expected.
             if it.startswith("  "): # checks for indentation
                 tabCheck = 0 # resets to unexpected indentation
+                print("Good")
             else:
                 statement_list[i] = "   " + it # changes indentation
                 tabCheck = 0 # resets to unexpected indentation
+                print("NOOOO")
         i += 1
 
-        #Checks for keywords that indicate indentation after the next newline
-        if "for " in it or "if " in it or "else " in it or "while " in it or "def " in it:
+        # Checks for keywords that indicate indentation after the next newline
+        # TODO does not account for conditional statements wheen they start with a tab.
+        # TODO need to implement a fix for when there is a statement that has an indentation and should not
+
+        if it.startswith("for ") or it.startswith("if ") or it.startswith("else ") or it.startswith("while ") or it.startswith("def ") or it.startswith("elif "):
             tabCheck = 1 # to set expectation for indentation in the next lne
 
     fixed_code = statement_list
