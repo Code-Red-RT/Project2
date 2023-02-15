@@ -26,8 +26,28 @@ with open(input_file) as file:
     print("Reading file...")
     original_file = str(file)
     read = file.readlines()
-    print(read)
+
+    # print(read)
     # TODO 1.) Check to make sure all the indentation in the input program is used correctly. If not, fix it. 
+
+    tabCheck = i = 0 # if val is 0 newline not expected. if val 1 it is
+    statement_list = read
+
+    # traverse the statement list
+    for it in statement_list: 
+        if tabCheck == 1: # to check if indentation expected.
+            if it.startswith("  "): # checks for indentation
+                tabCheck = 0 # resets to unexpected indentation
+            else:
+                statement_list[i] = "   " + it # changes indentation
+                tabCheck = 0 # resets to unexpected indentation
+        i += 1
+
+        #Checks for keywords that indicate indentation after the next newline
+        if "for " in it or "if " in it or "else " in it or "while " in it or "def " in it:
+            tabCheck = 1 # to set expectation for indentation in the next lne
+
+    fixed_code = statement_list
 
     # TODO 2.) Check to make sure all the function headers are syntactically correct. If not, fix it.
 

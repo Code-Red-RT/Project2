@@ -8,5 +8,7 @@ for item in array:
     add = item + 14
     print (str(item) + " + 14 = " + str(add))
     new_array.append(add)
+for it in array:
+incorrect_indent = 20 # added to test change in indentation in part 1 of project
 
 print("New array: ", new_array)
