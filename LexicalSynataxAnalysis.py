@@ -32,25 +32,29 @@ with open(input_file) as file:
 
     tabCheck = i = 0 # if val is 0 newline not expected. if val 1 it is
     statement_list = read
+    number_of_tabs = 0
 
     # traverse the statement list
     for it in statement_list: 
         if tabCheck == 1: # to check if indentation expected.
-            if it.startswith("  "): # checks for indentation
+            if it.startswith("  " + "  " * number_of_tabs): # checks for indentation
                 tabCheck = 0 # resets to unexpected indentation
-                print("Good")
             else:
                 statement_list[i] = "   " + it # changes indentation
                 tabCheck = 0 # resets to unexpected indentation
-                print("NOOOO")
         i += 1
 
         # Checks for keywords that indicate indentation after the next newline
-        # TODO does not account for conditional statements wheen they start with a tab.
         # TODO need to implement a fix for when there is a statement that has an indentation and should not
 
-        if it.startswith("for ") or it.startswith("if ") or it.startswith("else ") or it.startswith("while ") or it.startswith("def ") or it.startswith("elif "):
+        string_whithout_whitespace = it.lstrip() # ignore tab before to check statement
+        if string_whithout_whitespace.startswith("for ") or string_whithout_whitespace.startswith("if ") or string_whithout_whitespace.startswith("else "):
             tabCheck = 1 # to set expectation for indentation in the next lne
+            number_of_tabs = it.count("    ")
+
+        if string_whithout_whitespace.startswith("while ") or string_whithout_whitespace.startswith("def ") or string_whithout_whitespace.startswith("elif "):
+            tabCheck = 1
+            number_of_tabs = it.count("    ")
 
     fixed_code = statement_list
 
