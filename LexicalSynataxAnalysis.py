@@ -1,7 +1,6 @@
 """
 TEAM AWESOME
 02/28/2023
-
 ----------------
 Team Members:
 ----------------
@@ -13,7 +12,6 @@ Erika Sadsad
 Adriana Miller
 ----------------
 PROJECT 2: LEXICAL AND SYNTAX ANALYSIS
-
 Write a program (language of your choice) that takes in a Python program as an input and does the 
 following tasks:
 """
@@ -26,8 +24,37 @@ with open(input_file) as file:
     print("Reading file...")
     original_file = str(file)
     read = file.readlines()
-    print(read)
+
+    # print(read)
     # TODO 1.) Check to make sure all the indentation in the input program is used correctly. If not, fix it. 
+
+    tabCheck = i = 0 # if val is 0 newline not expected. if val 1 it is
+    statement_list = read
+    number_of_tabs = 0
+
+    # traverse the statement list
+    for it in statement_list: 
+        if tabCheck == 1: # to check if indentation expected.
+            if it.startswith("  " + "  " * number_of_tabs): # checks for indentation
+                tabCheck = 0 # resets to unexpected indentation
+            else:
+                statement_list[i] = "   " + it # changes indentation
+                tabCheck = 0 # resets to unexpected indentation
+        i += 1
+
+        # Checks for keywords that indicate indentation after the next newline
+        # TODO need to implement a fix for when there is a statement that has an indentation and should not
+
+        string_whithout_whitespace = it.lstrip() # ignore tab before to check statement
+        if string_whithout_whitespace.startswith("for ") or string_whithout_whitespace.startswith("if ") or string_whithout_whitespace.startswith("else "):
+            tabCheck = 1 # to set expectation for indentation in the next lne
+            number_of_tabs = it.count("    ")
+
+        if string_whithout_whitespace.startswith("while ") or string_whithout_whitespace.startswith("def ") or string_whithout_whitespace.startswith("elif "):
+            tabCheck = 1
+            number_of_tabs = it.count("    ")
+
+    fixed_code = statement_list
 
     # TODO 2.) Check to make sure all the function headers are syntactically correct. If not, fix it.
 
