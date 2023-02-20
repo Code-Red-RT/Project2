@@ -7,11 +7,11 @@ for item in array:
     if item:
         if item:
             pass
-        if item:
-            pass
+    if item:
+        pass
         print("Working on: " + str(item))
-        add = item + 14
-        print (str(item) + " + 14 = " + str(add))
+    add = item + 14
+    print (str(item) + " + 14 = " + str(add))
         new_array.append(add)
     if item:
         pass
