@@ -1,7 +1,7 @@
-ORIGINAL CODE:
-<_io.TextIOWrapper name='PythonExample.py' mode='r' encoding='cp1252'>
+# ORIGINAL CODE:
+<_io.TextIOWrapper name='PythonExample.py' mode='r' encoding='UTF-8'>
 
- # FIXED CODE: 
+# FIXED CODE: 
 fixed code will go here
 
-Total number of print statements: 3
+# Total number of 'print' statements: 3
