@@ -35,6 +35,7 @@ with open(input_file) as file:
     number_of_spaces = 0
     stack = [0]
     conditional_words = ["for ", "if ", "while ", "else ", "def ", "elif "]
+    
 
     # traverse the statement list
     for it in statement_list:
